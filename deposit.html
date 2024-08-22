@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 7612;
+            background-image: url("https://www.kotak.com/content/dam/Kotak/herosliderbanner/what-is-atm-full-form-definition-uses-t-358x201.jpg"); /* Replace 'atm-background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Deposit</h2>
+        <form id="depositForm" onsubmit="deposit(event)">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="1" required>
+            <button type="submit">Deposit</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function deposit(event) {
+            event.preventDefault();
+            const depositAmount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(depositAmount) || depositAmount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+
+            // Update the deposited amount
+            let depositedAmount = parseFloat(localStorage.getItem('depositedAmount')) || 0;
+            depositedAmount += depositAmount;
+            localStorage.setItem('depositedAmount', depositedAmount);
+
+            // Display success message
+            document.getElementById('message').innerText = `Successfully deposited $${depositAmount.toFixed(2)}.`;
+            document.getElementById('message').style.display = 'block';
+
+            // Clear the input field
+            document.getElementById('amount').value = '';
+        }
+    </script>
+</body>
+</html>

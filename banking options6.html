@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            margin: 0;
+            padding: 0;
+         
+            background-image: url("https://img.freepik.com/premium-vector/banking-finance-concept-illustration_387612-169.jpg");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            
+            color: #fff;
+            text-align: center;
+            padding: 10px;text-align: center;
+           /* background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .account-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .account-option {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .account-option:hover {
+            background-color: #45a049;
+        }
+     
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Account Selection</h1>
+    </header>
+
+    <main>
+        <p>Select the type of account:</p>
+        <div class="account-options">
+            <button class="account-option" onclick="selectAccountAndContinue('savings')">Savings Account</button>
+            <button class="account-option" onclick="selectAccountAndContinue('current')">Current Account</button>
+        </div>
+    </main>
+
+    <script>
+        function selectAccountAndContinue(accountType) {
+            localStorage.setItem('selectedAccountType', accountType);
+            window.location.href = 'transaction7.html';
+        }
+    </script>
+</body>
+</html>

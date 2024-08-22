@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Selection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .language-options {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .language-option {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .language-option:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Language Selection</h1>
+    </header>
+
+    <main>
+        <p>Select your preferred language:</p>
+        <div class="language-options">
+            <button class="language-option" onclick="selectLanguage('english')">English</button>
+            <button class="language-option" onclick="selectLanguage('hindi')">Hindi</button>
+            <button class="language-option" onclick="selectLanguage('telugu')">Telugu</button>
+            <button class="language-option" onclick="selectLanguage('kannada')">Kannada</button>
+            <button class="language-option" onclick="selectLanguage('tamil')">Tamil</button>
+            <button class="language-option" onclick="selectLanguage('malayalam')">Malayalam</button>
+        </div>
+    </main>
+    
+    <script>
+        function selectLanguage(language) {
+            localStorage.setItem('selectedLanguage', language);
+            // Redirect to the next page based on the selected language
+            window.location.href = 'banking-options.html';
+            
+        function selectLanguage(language) {
+            localStorage.setItem('selectedLanguage', language);
+            // Redirect to the next page based on the selected language
+           // <button class="language-option" onclick="selectLanguage('hindi')">Hindi</button>
+            if (language === 'english') {
+                window.location.href = 'banking options6.html';
+            } //else if (language === 'hindi') {
+                //window.location.href = 'banking options6.html';
+            //}
+        }
+    </script>
+
+        }
+    </script>
+</body>
+</html>

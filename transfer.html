@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Amount</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.kotak.com/content/dam/Kotak/herosliderbanner/what-is-atm-full-form-definition-uses-t-358x201.jpg"); /* Replace 'atm-background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Transfer Amount</h2>
+        <form id="transferForm" onsubmit="transferAmount(event)">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="1" step="any" required>
+            <label for="accountNumber">Destination Account Number:</label>
+            <input type="text" id="accountNumber" name="accountNumber" pattern="[0-9]{9,18}" required>
+            <button type="submit">Transfer</button>
+        </form>
+        <p id="transferMessage"></p>
+    </div>
+
+    <script>
+        let balance = 1000; // Initial balance for demonstration purposes
+
+        function transferAmount(event) {
+            event.preventDefault();
+            const amount = parseFloat(document.getElementById('amount').value);
+            const accountNumber = document.getElementById('accountNumber').value;
+
+            if (amount > balance) {
+                document.getElementById('transferMessage').textContent = 'Insufficient balance.';
+                return;
+            }
+
+            // Perform the transfer logic here
+            // For demonstration purposes, we'll just update the balance and show a success message
+            balance -= amount;
+
+            document.getElementById('transferMessage').textContent = `Successfully transferred $${amount} to account number ${accountNumber}. Updated balance: $${balance}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; /* Center the content */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: auto; /* Center the table */
+    margin-right: auto; /* Center the table */
+}
+th {
+    background-color: #f2f2f2;
+}
+
+th.name {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th.amount {
+    background-color: #4CAF50;
+    color: white;
+}

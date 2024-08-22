@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Inquiry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.kotak.com/content/dam/Kotak/herosliderbanner/what-is-atm-full-form-definition-uses-t-358x201.jpg"); /* Replace 'atm-background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Balance Inquiry</h2>
+        <button onclick="checkBalance()">Check Balance</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        let depositedAmount = parseFloat(localStorage.getItem('depositedAmount')) || 0;
+        let withdrawnAmount = parseFloat(localStorage.getItem('withdrawnAmount')) || 0;
+
+        function checkBalance() {
+            const totalBalance = depositedAmount - withdrawnAmount;
+            document.getElementById('message').innerText = `Your Total Balance: $${totalBalance.toFixed(2)}`;
+            document.getElementById('message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

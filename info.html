@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Information</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Grey background color */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            background-image: url("https://newyorkfingerprints.com/wp-content/uploads/2019/06/geometric-1732847_1280-1024x512.jpg"); 
+            align-items: center;
+            height: 100vh;
+
+        }
+        .content {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #4CAF50; /* Green button color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Provide your basic information</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}"><br>
+            <button type="button" onclick="generateOTP()">Generate OTP</button>
+        </form>
+    </div>
+
+    <script>
+        function generateOTP() {
+            // Generate a random 4-digit OTP
+            var otp = Math.floor(1000 + Math.random() * 9000);
+            sessionStorage.setItem('otp', otp.toString());
+
+            // Display the OTP in an alert
+            alert("Your OTP is: " + otp);
+
+            // Redirect to the OTP verification page
+            window.location.href = `basicD.html?otp=${otp}`;
+        }
+    </script>
+</body>
+</html>

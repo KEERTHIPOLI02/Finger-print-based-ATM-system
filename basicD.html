@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Grey background color */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            justify-content: center;
+            background-image: url("https://newyorkfingerprints.com/wp-content/uploads/2019/06/geometric-1732847_1280-1024x512.jpg"); 
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background-color: #4CAF50; /* Green button color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            display: none;
+        }
+        #resendButton {
+            margin-top: 10px;
+            color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Enter OTP</h2>
+        <form id="otpForm" onsubmit="verifyOTP(event)">
+            <label for="otp">OTP:</label><br>
+            <input type="text" id="otp" name="otp" required><br>
+            <button type="submit">Verify OTP</button>
+            <p class="error-message" id="errorMessage"></p>
+        </form>
+        <button id="resendButton" onclick="resendOTP()">Resend OTP</button>
+    </div>
+
+    <script>
+        var timer; // Timer variable
+
+        function startTimer() {
+            var timeLeft = 30; // 30 seconds
+            timer = setInterval(function() {
+                if (timeLeft > 0) {
+                    document.getElementById('resendButton').innerText = 'Resend OTP (' + timeLeft + ')';
+                    timeLeft--;
+                } else {
+                    clearInterval(timer);
+                    document.getElementById('resendButton').innerText = 'Resend OTP';
+                    document.getElementById('resendButton').disabled = false;
+                }
+            }, 1000); // Update every second (1000 milliseconds)
+        }
+
+        function verifyOTP(event) {
+            event.preventDefault();
+            var enteredOTP = document.getElementById('otp').value;
+            var storedOTP = sessionStorage.getItem('otp');
+
+            if (enteredOTP == storedOTP) {
+                // Redirect to the next page
+                window.location.href = 'banking options6.html';
+            } else {
+                // Display error message
+                document.getElementById('errorMessage').innerText = 'Invalid OTP. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+
+        function resendOTP() {
+            // Generate a new OTP
+            var otp = Math.floor(1000 + Math.random() * 9000);
+            sessionStorage.setItem('otp', otp.toString());
+            alert("Your new OTP is: " + otp);
+
+            // Disable the resend button and start the timer
+            document.getElementById('resendButton').disabled = true;
+            startTimer();
+        }
+
+        // Initial start of the timer
+        startTimer();
+    </script>
+</body>
+</html>

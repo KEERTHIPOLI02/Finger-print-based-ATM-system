@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.kotak.com/content/dam/Kotak/herosliderbanner/what-is-atm-full-form-definition-uses-t-358x201.jpg"); /* Replace 'atm-background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .transaction-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .transaction-option {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px 10px 0;
+        }
+
+        .transaction-option:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Transaction Options</h1>
+    </header>
+
+    <main>
+        <div class="transaction-options">
+            <button class="transaction-option" onclick="selectTransaction('withdraw')">Cash Withdraw</button></div></br>
+            <button class="transaction-option" onclick="selectTransaction('deposit')">Deposit</button></div></br>
+            <button class="transaction-option" onclick="selectTransaction('balance')">Bank Balance Inquiry</button></div></br>
+            <button class="transaction-option" onclick="selectTransaction('statement')">Mini Statement</button></div></br>
+            <button class="transaction-option" onclick="selectTransaction('transfer')">Transfer</button></div></br>
+            
+        </div>
+    </main>
+
+    <script>
+        function selectTransaction(transactionType) {
+            localStorage.setItem('selectedTransaction', transactionType);
+            switch (transactionType) {
+                case 'withdraw':
+                    window.location.href = 'cash withdraw.html';
+                    break;
+                case 'deposit':
+                    window.location.href = 'deposit.html';
+                    break;
+                case 'balance':
+                    window.location.href = 'balance-inquiry.html';
+                    break;
+                case 'statement':
+                    window.location.href = 'mini-statement.html';
+                    break;
+                case 'transfer':
+                    window.location.href = 'transfer.html';
+                    break;
+                case 'pin':
+                    window.location.href = 'pin-change.html';
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

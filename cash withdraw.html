@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Withdrawal</title>
+    <style>
+        body {
+            
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://www.kotak.com/content/dam/Kotak/herosliderbanner/what-is-atm-full-form-definition-uses-t-358x201.jpg"); /* Replace 'atm-background.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cash Withdrawal</h2>
+        <form id="withdrawForm" onsubmit="withdrawCash(event)">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="1" required>
+            <button type="submit">Withdraw</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        // Initialize deposited amount from localStorage or set it to 0
+        let depositedAmount = parseFloat(localStorage.getItem('depositedAmount')) || 0;
+
+        // Update the message to display the deposited amount
+       // document.getElementById('message').innerText = `Current Deposited Amount: $${depositedAmount.toFixed(2)}.`;
+        //document.getElementById('message').style.display = 'block';
+
+        function withdrawCash(event) {
+            event.preventDefault();
+            const withdrawAmount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+
+            if (withdrawAmount > depositedAmount) {
+                // Display insufficient funds message
+                document.getElementById('message').innerText = 'Insufficient balance.';
+                document.getElementById('message').style.display = 'block';
+                return;
+            }
+
+            // Perform withdrawal logic here
+
+            // Update the deposited amount
+            depositedAmount -= withdrawAmount;
+            localStorage.setItem('depositedAmount', depositedAmount);
+
+            // Update the message to display the withdrawn amount
+            document.getElementById('message').innerText = `Successfully withdrawn $${withdrawAmount.toFixed(2)}.`;
+            document.getElementById('message').style.display = 'block';
+
+            // Clear the input field
+            document.getElementById('amount').value = '';
+        }
+    </script>
+</body>
+</html>

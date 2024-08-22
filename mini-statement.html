@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Statement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mini Statement</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody id="statementBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let transactions = [
+            { date: '2022-03-01', type: 'credit', amount: 1000 },
+            { date: '2022-03-02', type: 'debit', amount: 500 },
+            { date: '2022-03-03', type: 'credit', amount: 1500 },
+            { date: '2022-03-04', type: 'debit', amount: 700 }
+        ];
+
+        function displayTransactions() {
+            let balance = 0;
+            const statementBody = document.getElementById('statementBody');
+            statementBody.innerHTML = '';
+            transactions.forEach(transaction => {
+                let amount = transaction.type === 'credit' ? transaction.amount : -transaction.amount;
+                balance += amount;
+                const row = `
+                    <tr>
+                        <td>${transaction.date}</td>
+                        <td>${transaction.type}</td>
+                        <td>${amount}</td>
+                        <td>${balance}</td>
+                    </tr>
+                `;
+                statementBody.innerHTML += row;
+            });
+        }
+
+        function deposit(event) {
+            event.preventDefault();
+            const depositAmount = parseFloat(document.getElementById('amount').value);
+            if (isNaN(depositAmount) || depositAmount <= 0) {
+                alert('Please enter a valid amount.');
+                return;
+            }
+
+            // Update the deposited amount
+            transactions.push({ date: new Date().toISOString().slice(0, 10), type: 'credit', amount: depositAmount });
+
+            // Display success message
+            alert(`Successfully deposited $${depositAmount.toFixed(2)}.`);
+
+            // Update the mini statement display
+            displayTransactions();
+
+            // Clear the input field
+            document.getElementById('amount').value = '';
+        }
+
+        // Display transactions when the page loads
+        displayTransactions();
+    </script>
+</body>
+</html>
